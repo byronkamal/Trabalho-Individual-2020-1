@@ -1,0 +1,62 @@
+language:
+  - node_js
+  - python
+
+node_js:
+  - "12.18.1"
+
+python:
+  - "3.6"
+
+services:
+  - docker
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  # - pip install requests
+
+  # Docker Hub login
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+stages:
+  - Build
+  - Tests
+  - Push docker image prod
+  # - Upgrade rancher service
+
+jobs:
+  include:
+    - stage: Build
+      name: Build
+      script:
+        # build docker image CLIENT
+        - docker build -t "$DOCKER_USERNAME"/"$DOCKER_REPO":"$TAG_NAME_CLIENT" ./client
+
+        # build docker image API
+        - docker build -t "$DOCKER_USERNAME"/"$DOCKER_REPO":"$TAG_NAME_API" ./api
+
+    - stage: Tests
+      before_script:
+        - docker-compose up
+      script:
+        # test client
+        - docker-compose run client yarn test:unit
+        # test api
+        - docker-compose run api bundle exec rails test
+      after_script:
+        - docker-compose down
+
+    - stage: "Push docker image"
+      name: "Push docker image"
+      if: (NOT type IN (pull_request)) AND branch = master
+      script:
+        - docker push "$DOCKER_USERNAME"/"$DOCKER_REPO":"$TAG_NAME_CLIENT"
+        - docker push "$DOCKER_USERNAME"/"$DOCKER_REPO":"$TAG_NAME_API"
+
+    # - stage: "Upgrade rancher service"
+    #   name: "Upgrade rancher service"
+    #   if: (NOT type IN (pull_request)) AND branch = master
+    #   script: python ./scripts/upgrade_service.py
