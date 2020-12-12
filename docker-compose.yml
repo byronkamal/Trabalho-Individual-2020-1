@@ -25,6 +25,7 @@ services:
       - db
     links:
       - db
+    env_file: .env
     # client:
   #   container_name: client
   #   build: ./client
