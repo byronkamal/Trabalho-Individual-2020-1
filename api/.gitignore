@@ -31,3 +31,4 @@ dados/
 
 # env
 .db.env
+.env

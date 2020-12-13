@@ -40,11 +40,13 @@ jobs:
 
     - stage: Tests
       before_script:
-        - docker-compose up
+        - sudo docker-compose up -d --build
       script:
         # test client
         - docker-compose run client yarn test:unit
         # test api
+        - docker-compose run api rake db:create
+        - docker-compose run api rake db:migrate
         - docker-compose run api bundle exec rails test
       after_script:
         - docker-compose down
