@@ -45,7 +45,7 @@ jobs:
 
     - stage: "Push docker image"
       name: "Push docker image"
-      if: (NOT type IN (pull_request)) AND branch = master
+      # if: (NOT type IN (pull_request)) AND branch = master
       before_script:
         # build docker image CLIENT
         - docker build -t "$DOCKER_USERNAME"/"$DOCKER_REPO":"$TAG_NAME_CLIENT" ./client
@@ -59,7 +59,9 @@ jobs:
         - docker push "$DOCKER_USERNAME"/"$DOCKER_REPO":"$TAG_NAME_CLIENT"
         - docker push "$DOCKER_USERNAME"/"$DOCKER_REPO":"$TAG_NAME_API"
 
-    # - stage: "Upgrade rancher service"
-    #   name: "Upgrade rancher service"
-    #   if: (NOT type IN (pull_request)) AND branch = master
-    #   script: python ./scripts/upgrade_service.py
+    - stage: "Upgrade rancher service"
+      name: "Upgrade rancher service"
+      # if: (NOT type IN (pull_request)) AND branch = master
+      script:
+        - python ./scripts/upgrade_api_service.py
+        - python ./scripts/upgrade_client_service.py
