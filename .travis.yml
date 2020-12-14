@@ -30,6 +30,7 @@ jobs:
       name: Build
       script:
         - sudo docker-compose up -d --build
+
     - stage: Tests
       before_script:
         - sudo docker-compose up -d --build

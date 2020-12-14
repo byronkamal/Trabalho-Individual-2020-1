@@ -1,5 +1,17 @@
 # Trabalho Individual - GCES - 2020/1
 
+[![Build Status](https://travis-ci.com/byronkamal/Trabalho-Individual-2020-1.svg?branch=master)](https://travis-ci.com/byronkamal/Trabalho-Individual-2020-1)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=byronkamal_Trabalho-Individual-2020-1&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=byronkamal_Trabalho-Individual-2020-1)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=byronkamal_Trabalho-Individual-2020-1&metric=alert_status)](https://sonarcloud.io/dashboard?id=byronkamal_Trabalho-Individual-2020-1)
+
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=byronkamal_Trabalho-Individual-2020-1&metric=security_rating)](https://sonarcloud.io/dashboard?id=byronkamal_Trabalho-Individual-2020-1)
+
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=byronkamal_Trabalho-Individual-2020-1&metric=code_smells)](https://sonarcloud.io/dashboard?id=byronkamal_Trabalho-Individual-2020-1)
+
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=byronkamal_Trabalho-Individual-2020-1&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=byronkamal_Trabalho-Individual-2020-1)
+
 A Gestão de Configuração de Software é parte fundamental no curso de GCES, e dominar os conhecimentos de configuração de ambiente, containerização, virtualização, integração e deploy contínuo tem se tornado cada vez mais necessário para ingressar no mercado de trabalho.
 
 Para exercitar estes conhecimentos, você deverá aplicar os conceitos estudados ao longo da disciplina no produto de software contido neste repositório.
